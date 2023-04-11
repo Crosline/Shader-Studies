@@ -33,10 +33,10 @@ Shader "Studies/Shader5/Unlit" {
                 return f4.xyz;
             }
 
-            v2f vert (MeshData v) {
+            v2f vert (MeshData mesh) {
                 v2f output;
-                output.vertex = UnityObjectToClipPos(v.vertex);
-                output.uv = (v.uv0 + _Offset) * _Scale;
+                output.vertex = UnityObjectToClipPos(mesh.vertex);
+                output.uv = (mesh.uv0 + _Offset) * _Scale;
                 return output;
             }
 

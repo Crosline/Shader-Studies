@@ -38,10 +38,10 @@ Shader "Studies/Shader1/Unlit" {
                 return f4.xyz;
             }
 
-            v2f vert (MeshData v) {
+            v2f vert (MeshData mesh) {
                 v2f output;
                 // o.normal = v.normal + _Value;
-                output.vertex = UnityObjectToClipPos(toFloat3(v.vertex));
+                output.vertex = UnityObjectToClipPos(toFloat3(mesh.vertex));
                 output.color = _Color;
                 return output;
             }

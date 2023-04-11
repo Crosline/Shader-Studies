@@ -30,10 +30,10 @@ Shader "Studies/Shader4/Unlit" {
                 return f4.xyz;
             }
 
-            v2f vert (MeshData v) {
+            v2f vert (MeshData mesh) {
                 v2f output;
-                output.vertex = UnityObjectToClipPos(toFloat3(v.vertex));
-                output.uv = v.uv0;
+                output.vertex = UnityObjectToClipPos(toFloat3(mesh.vertex));
+                output.uv = mesh.uv0;
                 return output;
             }
 
