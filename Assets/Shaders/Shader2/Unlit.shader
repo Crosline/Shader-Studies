@@ -27,7 +27,7 @@ Shader "Shader2/Unlit" {
 
             struct v2f {
                 // float2 uv : TEXCOORD0;
-                float3 normal : TEXCOORD0;
+                float3 normal : NORMAL;
                 float4 vertex : SV_POSITION;
             };
 
