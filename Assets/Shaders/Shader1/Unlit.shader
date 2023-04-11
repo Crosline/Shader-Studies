@@ -27,7 +27,7 @@ Shader "Studies/Shader1/Unlit" {
             };
 
             struct v2f {
-                // float2 uv : TEXCOORD0;
+                float2 uv : TEXCOORD0;
                 // float3 normal : NORMAL;
                 float4 vertex : SV_POSITION;
                 float4 color : COLOR;
@@ -43,6 +43,7 @@ Shader "Studies/Shader1/Unlit" {
                 // o.normal = v.normal + _Value;
                 output.vertex = UnityObjectToClipPos(toFloat3(mesh.vertex));
                 output.color = _Color;
+                output.uv = mesh.uv0;
                 return output;
             }
 
