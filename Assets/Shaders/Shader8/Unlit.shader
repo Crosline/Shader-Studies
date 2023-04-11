@@ -35,7 +35,7 @@ Shader "Studies/Shader8/Unlit" {
             float4 frag (v2f i) : SV_Target {
 
                 // float t = abs(frac(i.uv.x * 5) * 2 -1);
-                float color = cos(i.uv.y * 25);
+                float color = cos((i.uv.x + _Time * 0.5)* 25);
                 
                 return color;
             }
