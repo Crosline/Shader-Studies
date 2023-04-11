@@ -9,6 +9,8 @@ Shader "Studies/Shader8/Unlit" {
             #pragma fragment frag
             
             #include "UnityCG.cginc"
+
+            #define TAU 6.283185307179586
             
             struct MeshData {
                 float4 vertex : POSITION;
@@ -35,7 +37,8 @@ Shader "Studies/Shader8/Unlit" {
             float4 frag (v2f i) : SV_Target {
 
                 // float t = abs(frac(i.uv.x * 5) * 2 -1);
-                float color = cos((i.uv.x + _Time * 0.5)* 25);
+                float xOffset = cos(i.uv.y * TAU * 8) * 0.01;
+                float color = cos((i.uv.x + xOffset + _Time * 0.5)* 25);
                 
                 return color;
             }
