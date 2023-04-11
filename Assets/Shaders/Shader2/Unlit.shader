@@ -1,4 +1,4 @@
-Shader "Shader2/Unlit" {
+Shader "Studies/Shader2/Unlit" {
     
     Properties {
 //        _MainTex ("Texture", 2D) = "white" {}
