@@ -2,7 +2,8 @@ Shader "Shader1/Unlit" {
     
     Properties {
 //        _MainTex ("Texture", 2D) = "white" {}
-        _Value ("Value", float) = 0.0
+//        _Value ("Value", Float) = 0.0
+        _Color ("Color", Color) = (.25, .5, .5, 1)
     }
     
     SubShader {
@@ -16,33 +17,38 @@ Shader "Shader1/Unlit" {
             #include "UnityCG.cginc"
             
             float _Value;
+            float4 _Color;
 
-            struct MeshData {
+            struct MeshData { // per-vertex
                 float4 vertex : POSITION;
-                float3 normal : NORMAL;
-                float4 tangent : TANGENT;
-                float4 color : COLOR;
+                // float3 normal : NORMAL;
+                // float4 tangent : TANGENT;
                 float2 uv0 : TEXCOORD0;
-                float2 uv1 : TEXCOORD1;
             };
 
             struct v2f {
-                float2 uv : TEXCOORD0;
-                float3 normal : NORMAL;
+                // float2 uv : TEXCOORD0;
+                // float3 normal : NORMAL;
                 float4 vertex : SV_POSITION;
+                float4 color : COLOR;
             };
 
+            float3 toFloat3(float4 f4)
+            {
+                return f4.xyz;
+            }
 
             v2f vert (MeshData v) {
-                v2f o;
-                o.normal = v.normal + _Value;
-                o.vertex = UnityObjectToClipPos(v.vertex);
-                return o;
+                v2f output;
+                // o.normal = v.normal + _Value;
+                output.vertex = UnityObjectToClipPos(toFloat3(v.vertex));
+                output.color = _Color;
+                return output;
             }
 
             fixed4 frag (v2f i) : SV_Target {
                 // sample the texture
-                return i.vertex;
+                return i.color;
             }
             ENDCG
         }
