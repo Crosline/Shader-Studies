@@ -11,6 +11,7 @@ Shader "Studies/Shader8/Unlit" {
             #include "UnityCG.cginc"
 
             #define TAU 6.283185307179586
+            #define PI TAU/2
             
             struct MeshData {
                 float4 vertex : POSITION;
@@ -38,9 +39,9 @@ Shader "Studies/Shader8/Unlit" {
 
                 // float t = abs(frac(i.uv.x * 5) * 2 -1);
                 float xOffset = cos(i.uv.y * TAU * 8) * 0.01;
-                float color = cos((i.uv.x + xOffset + _Time * 0.5)* 25);
+                float color = cos((i.uv.x + xOffset + _Time.y * 0.05)* TAU * 8);
                 
-                return color;
+                return color * -(i.uv.y);
             }
             ENDCG
         }
