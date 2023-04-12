@@ -40,12 +40,17 @@ Shader "Studies/Shader12/Unlit" {
             {
                 return cos((x + _Time.y * 0.05)* TAU * 5);
             }
+
+            float2 getcentereduv(float2 uv)
+            {
+                return uv * 2 - 1;
+            }
             
             float getwaveradial(float2 uv)
             {
-                float2 centeredUV = uv * 2 - 1;
+                float2 centeredUV = getcentereduv(uv);
                 float wave = getwave(length(centeredUV));
-                wave *= 1-length(centeredUV);
+                wave *= (1-length(centeredUV))*0.5;
                 return wave;
             }
 
@@ -53,7 +58,7 @@ Shader "Studies/Shader12/Unlit" {
                 v2f output;
                 float waves = getwaveradial(mesh.uv);
                 // mesh.vertex.y = waves_x * waves_y * _WaveAmp.x;
-                mesh.vertex.y = (waves * _WaveAmp);
+                mesh.vertex.y = (waves * _WaveAmp * (1-length(getcentereduv(mesh.uv)) > 0.16));
                 output.vertex = UnityObjectToClipPos(mesh.vertex);
                 
                 output.uv = mesh.uv;
@@ -62,6 +67,7 @@ Shader "Studies/Shader12/Unlit" {
 
             fixed4 frag (v2f i) : SV_Target {
                 float waves = getwaveradial(i.uv);
+                waves = waves * saturate(1-length(getcentereduv(i.uv))) *2;
                 return waves;
                 return float4(i.uv, 0, 1);
             }

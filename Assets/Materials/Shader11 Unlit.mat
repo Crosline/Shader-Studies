@@ -32,5 +32,5 @@ Material:
     - _ColorB: {r: 0.709208, g: 0, b: 1, a: 1}
     - _Offset: {r: 1, g: 0, b: 0, a: 0}
     - _Scale: {r: 2, g: 2, b: 0, a: 0}
-    - _WaveAmp: {r: 0.3, g: 0.3, b: 0, a: 0}
+    - _WaveAmp: {r: 0.05, g: 0.05, b: 0, a: 0}
   m_BuildTextureStacks: []

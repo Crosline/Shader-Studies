@@ -25,7 +25,7 @@ Material:
     - _ColorEnd: 0.499
     - _ColorStart: 0.107
     - _Value: 1.15
-    - _WaveAmp: 1
+    - _WaveAmp: 0.1
     m_Colors:
     - _Color: {r: 0.8115689, g: 0.9433962, b: 0.25364897, a: 1}
     - _ColorA: {r: 0, g: 0.981899, b: 1, a: 1}
