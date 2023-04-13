@@ -38,7 +38,7 @@ Shader "Studies/Shader12/Unlit" {
 
             float getwave(float x)
             {
-                return cos((x + _Time.y * 0.05)* TAU * 5);
+                return cos((x + _Time.y * -0.05)* TAU * 5);
             }
 
             float2 getcentereduv(float2 uv)
